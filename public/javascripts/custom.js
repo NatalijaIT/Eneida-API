@@ -1,41 +1,42 @@
-var eneidaUrl = "http://localhost:3000";
 var app = angular.module('MyApp', ['ngRoute']);
-app.controller('MainCntrl', function($scope, $http) {
+var eneidaUrl = "http://localhost:3000";
+app.controller('MainCntrl', function($http) {
+    var vm = this;
     $http.get(eneidaUrl)
         .then(function(response) {
-            $scope.rows = response.data.eneida;
+            vm.rows = response.data.eneida;
             //console.log($scope.rows)
         })
-    $scope.sendData = function() {
-        let id = $scope.rows[$scope.rows.length - 1].id + 1;
+    vm.sendData = function() {
+        let id = vm.rows[vm.rows.length - 1].id + 1;
         //console.log($scope);
         let req = {
             method: 'POST',
             url: eneidaUrl,
             data: JSON.stringify({
                 id: id,
-                text: $scope.text
+                text: vm.text
             })
         }
 
         // console.log(req);
 
         $http(req).then(function(response) {
-            $scope.rows = response.data.eneida;
+            vm.rows = response.data.eneida;
             //console.log(data)
         })
     };
-    $scope.delete = function(id) {
+    vm.delete = function(id) {
         //console.log(eneidaUrl + "/" + id);
         $http({
             method: 'DELETE',
             url: eneidaUrl + "/" + id
         }).then(function(response) {
-            $scope.rows = response.data.eneida;
+            vm.rows = response.data.eneida;
         })
     };
 
-    $scope.edit = function(row) {
+    vm.edit = function(row) {
         //let id = $scope.rows[$scope.rows.length - 1].id + 1;
         //console.log(row);
         let req = {
@@ -50,7 +51,7 @@ app.controller('MainCntrl', function($scope, $http) {
         //console.log(req);
 
         $http(req).then(function(response) {
-            $scope.rows = response.data.eneida;
+            vm.rows = response.data.eneida;
             //console.log(data)
         })
     };

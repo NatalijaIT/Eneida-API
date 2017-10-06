@@ -9,18 +9,18 @@
     <title>Eneida</title>
 </head>
 
-<body ng-app="MyApp" ng-controller="MainCntrl">
+<body ng-app="MyApp" ng-controller="MainCntrl as vm">
     <h1>Енеїда</h1>
-    <div ng-repeat="row in rows">
+    <div ng-repeat="row in vm.rows">
         <input ng-model="row.text" size={{row.text.length}}>
         <br>
-        <button ng-click="edit(row)">Save</button>
-        <button ng-click="delete(row.id)">Delete</button>
+        <button ng-click="vm.edit(row)">Save</button>
+        <button ng-click="vm.delete(row.id)">Delete</button>
     </div>
     <div>
         <form>
-            <textarea ng-model="text" type="text" placeholder="Add new row..." rows="5"></textarea>
-            <button ng-click="sendData()">Create</button>
+            <textarea ng-model="vm.text" type="text" placeholder="Add new row..." rows="5"></textarea>
+            <button ng-click="vm.sendData()">Create</button>
         </form>
     </div>
 </body>

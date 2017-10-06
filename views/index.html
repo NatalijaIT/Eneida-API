@@ -5,23 +5,36 @@
     <meta charset="utf-8">
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular.min.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular-route.js"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link rel="stylesheet" href="stylesheets/style.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
     <script src="javascripts/custom.js"></script>
     <title>Eneida</title>
 </head>
 
 <body ng-app="MyApp" ng-controller="MainCntrl as vm">
-    <h1>Енеїда</h1>
-    <div ng-repeat="row in vm.rows">
-        <input ng-model="row.text" size={{row.text.length}}>
-        <br>
-        <button ng-click="vm.edit(row)">Save</button>
-        <button ng-click="vm.delete(row.id)">Delete</button>
+    <div class="col-md-6">
+        <h1>Іван Петрович Котляревський</h1>
+        <h2>Енеїда</h2>
+        <div ng-repeat="row in vm.rows">
+            <table class="table">
+                <tr>
+                    <td><input class="poem" style="border:none" ng-model="row.text"></td>
+                    <td><button ng-click="vm.edit(row)">Save</button></td>
+                    <td><button ng-click="vm.delete(row.id)">Delete</button></td>
+                </tr>
+            </table>
+        </div>
+        <div>
+            <form>
+                <textarea ng-model="vm.text" type="text" placeholder="Add new row..." rows="4" cols="60"></textarea>
+                <button ng-click="vm.sendData()">Create</button>
+            </form>
+        </div>
     </div>
-    <div>
-        <form>
-            <textarea ng-model="vm.text" type="text" placeholder="Add new row..." rows="5"></textarea>
-            <button ng-click="vm.sendData()">Create</button>
-        </form>
+    <div class="col-md-6">
+        <img src="images/енеїда.jpg" class="img-rounded" alt="Cinque Terre" />
     </div>
 </body>
 

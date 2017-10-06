@@ -1,10 +1,11 @@
 var eneidaUrl = "http://localhost:3000";
 var app = angular.module('MyApp', ['ngRoute']);
 app.controller('MainCntrl', function($scope, $http) {
-    $http.get(eneidaUrl).success(function(response) {
-        $scope.rows = response.eneida;
-        //console.log($scope.rows)
-    })
+    $http.get(eneidaUrl)
+        .then(function(response) {
+            $scope.rows = response.data.eneida;
+            //console.log($scope.rows)
+        })
     $scope.sendData = function() {
         let id = $scope.rows[$scope.rows.length - 1].id + 1;
         //console.log($scope);
@@ -19,8 +20,8 @@ app.controller('MainCntrl', function($scope, $http) {
 
         // console.log(req);
 
-        $http(req).success(function(response) {
-            $scope.rows = response.eneida;
+        $http(req).then(function(response) {
+            $scope.rows = response.data.eneida;
             //console.log(data)
         })
     };
@@ -29,8 +30,8 @@ app.controller('MainCntrl', function($scope, $http) {
         $http({
             method: 'DELETE',
             url: eneidaUrl + "/" + id
-        }).success(function(response) {
-            $scope.rows = response.eneida;
+        }).then(function(response) {
+            $scope.rows = response.data.eneida;
         })
     };
 
@@ -48,8 +49,8 @@ app.controller('MainCntrl', function($scope, $http) {
 
         //console.log(req);
 
-        $http(req).success(function(response) {
-            $scope.rows = response.eneida;
+        $http(req).then(function(response) {
+            $scope.rows = response.data.eneida;
             //console.log(data)
         })
     };
